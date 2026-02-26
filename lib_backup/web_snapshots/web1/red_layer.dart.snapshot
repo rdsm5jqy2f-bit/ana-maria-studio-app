@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+import '../core/app_config.dart';
+
+class RedLayer extends StatelessWidget {
+  const RedLayer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final primaryAsset = AppAssets.redLayer;
+    final fit = kIsWeb ? BoxFit.contain : BoxFit.cover;
+    final alignment = LayerTuning.redAlignment;
+
+    return Stack(
+      clipBehavior: Clip.hardEdge,
+      fit: StackFit.expand,
+      children: [
+        Transform.translate(
+          offset: LayerTuning.redOffset,
+          child: Transform.scale(
+            scale: LayerTuning.redScale,
+            child: Image.asset(
+              primaryAsset,
+              fit: fit,
+              alignment: alignment,
+              repeat: ImageRepeat.noRepeat,
+              filterQuality: FilterQuality.high,
+              gaplessPlayback: true,
+              errorBuilder: (_, __, ___) => Image.asset(
+                AppAssets.redLayer,
+                fit: fit,
+                alignment: alignment,
+                repeat: ImageRepeat.noRepeat,
+                filterQuality: FilterQuality.high,
+                gaplessPlayback: true,
+                errorBuilder: (_, __, ___) => Container(color: Colors.black),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

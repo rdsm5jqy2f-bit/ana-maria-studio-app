@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "403287487378",
+    "project_id": "ana-maria-studio",
+    "storage_bucket": "ana-maria-studio.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403287487378:android:ee71d810dcd8e9e28c874b",
+        "android_client_info": {
+          "package_name": "com.anamaria.studio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6mXu_riwUPj49J86OqziG5G6bUL42bAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403287487378:android:f608a9d85eaf49ef8c874b",
+        "android_client_info": {
+          "package_name": "com.example.ana_maria_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6mXu_riwUPj49J86OqziG5G6bUL42bAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,167 @@
+import 'dart:ui';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'core/app_config.dart';
+import 'core/ui_widgets.dart';
+import 'layers/red_layer.dart';
+import 'layers/blue_layer.dart';
+import 'layers/pink_layer.dart';
+
+class SectionPage extends StatelessWidget {
+  final String title;
+  final Widget child;
+  final String? backgroundAsset;
+
+  const SectionPage({
+    super.key,
+    required this.title,
+    required this.child,
+    this.backgroundAsset,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (kIsWeb) {
+      final size = MediaQuery.sizeOf(context);
+      if (size.width >= 980) {
+        final frameWidth = (size.width - 96).clamp(900.0, 1180.0);
+        final frameHeight = (size.height * 0.94).clamp(700.0, 1120.0);
+
+        final content = Column(
+          children: [
+            const Expanded(flex: UiSizes.redFlex, child: RedLayer()),
+            Expanded(
+              flex: UiSizes.pinkFlex,
+              child: PinkLayer(
+                backgroundAsset: backgroundAsset,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: RainbowText(
+                            title,
+                            fontSize: 18,
+                            weight: FontWeight.w900,
+                            firstCapsOnly: false,
+                            headingStyle: true,
+                          ),
+                        ),
+                        GoldWordButton(
+                          label: 'Back',
+                          alignLeft: false,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 6),
+                          onTap: () => Navigator.of(context).maybePop(),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Expanded(
+                      child: ScrollConfiguration(
+                        behavior: const MaterialScrollBehavior()
+                            .copyWith(scrollbars: false),
+                        child: SingleChildScrollView(
+                          child: child,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+
+        return Scaffold(
+          backgroundColor: Colors.black,
+          body: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.asset(
+                backgroundAsset ?? AppAssets.pinkFallback,
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
+                filterQuality: FilterQuality.low,
+              ),
+              Positioned.fill(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
+                  child: Container(
+                    color: Colors.black.withValues(alpha: 0.36),
+                  ),
+                ),
+              ),
+              Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(18),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.tightFor(
+                      width: frameWidth,
+                      height: frameHeight,
+                    ),
+                    child: content,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    }
+
+    final body = Column(
+      children: [
+        const Expanded(flex: UiSizes.redFlex, child: RedLayer()),
+        Expanded(
+          flex: UiSizes.pinkFlex,
+          child: PinkLayer(
+            backgroundAsset: backgroundAsset,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: RainbowText(
+                        title,
+                        fontSize: 18,
+                        weight: FontWeight.w900,
+                        firstCapsOnly: false,
+                        headingStyle: true,
+                      ),
+                    ),
+                    GoldWordButton(
+                      label: 'Back',
+                      alignLeft: false,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 6),
+                      onTap: () => Navigator.of(context).maybePop(),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ScrollConfiguration(
+                    behavior: const MaterialScrollBehavior()
+                        .copyWith(scrollbars: false),
+                    child: SingleChildScrollView(
+                      child: child,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: body,
+    );
+  }
+}

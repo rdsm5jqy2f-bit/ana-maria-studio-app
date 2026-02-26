@@ -1,0 +1,61 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+import '../core/app_config.dart';
+
+class BlueLayer extends StatelessWidget {
+  const BlueLayer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final primaryAsset = AppAssets.blueLayer;
+    final fit = BoxFit.contain;
+    final alignment = LayerTuning.blueAlignment;
+
+    return Stack(
+      clipBehavior: Clip.hardEdge,
+      fit: StackFit.expand,
+      children: [
+        if (kIsWeb)
+          Positioned.fill(
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 22, sigmaY: 22),
+              child: Image.asset(
+                primaryAsset,
+                fit: BoxFit.cover,
+                alignment: alignment,
+                filterQuality: FilterQuality.low,
+              ),
+            ),
+          ),
+        Positioned.fill(
+          child: Transform.translate(
+            offset: LayerTuning.blueOffset,
+            child: Transform.scale(
+              scale: LayerTuning.blueScale,
+              child: Image.asset(
+                primaryAsset,
+                fit: fit,
+                alignment: alignment,
+                repeat: ImageRepeat.noRepeat,
+                filterQuality: FilterQuality.high,
+                gaplessPlayback: true,
+                errorBuilder: (_, __, ___) => Image.asset(
+                  AppAssets.blueLayer,
+                  fit: fit,
+                  alignment: alignment,
+                  repeat: ImageRepeat.noRepeat,
+                  filterQuality: FilterQuality.high,
+                  gaplessPlayback: true,
+                  errorBuilder: (_, __, ___) => Container(color: Colors.black),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

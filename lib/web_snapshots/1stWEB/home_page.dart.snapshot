@@ -1,0 +1,74 @@
+import 'dart:ui';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'layers/red_layer.dart';
+import 'layers/blue_layer.dart';
+import 'layers/green_layer.dart';
+import 'core/app_config.dart';
+import 'core/ui_widgets.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  Widget _buildStackedBody() {
+    return Column(
+      children: [
+        const Expanded(flex: UiSizes.redFlex, child: RedLayer()),
+        const Expanded(flex: UiSizes.blueFlex, child: BlueLayer()),
+        const Expanded(flex: UiSizes.greenFlex, child: GreenLayer()),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (kIsWeb) {
+      final size = MediaQuery.sizeOf(context);
+      if (size.width >= 980) {
+        final frameWidth = (size.width - 96).clamp(900.0, 1180.0);
+        final frameHeight = (size.height * 0.94).clamp(700.0, 1120.0);
+
+        return Scaffold(
+          backgroundColor: Colors.black,
+          body: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.asset(
+                AppAssets.greenLayerBg,
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
+                filterQuality: FilterQuality.low,
+              ),
+              Positioned.fill(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
+                  child: Container(
+                    color: Colors.black.withValues(alpha: 0.36),
+                  ),
+                ),
+              ),
+              Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(18),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.tightFor(
+                      width: frameWidth,
+                      height: frameHeight,
+                    ),
+                    child: _buildStackedBody(),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    }
+
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: _buildStackedBody(),
+    );
+  }
+}

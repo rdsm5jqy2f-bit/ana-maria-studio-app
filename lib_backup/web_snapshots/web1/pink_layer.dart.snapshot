@@ -1,0 +1,59 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+import '../core/app_config.dart';
+
+class PinkLayer extends StatelessWidget {
+  final String? backgroundAsset;
+  final Widget child;
+
+  const PinkLayer({
+    super.key,
+    this.backgroundAsset,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final baseAsset = backgroundAsset ?? AppAssets.pinkFallback;
+    final primaryAsset = baseAsset;
+    final fit = kIsWeb ? BoxFit.contain : BoxFit.cover;
+
+    return Stack(
+      clipBehavior: Clip.hardEdge,
+      fit: StackFit.expand,
+      children: [
+        Transform.translate(
+          offset: LayerTuning.pinkOffset,
+          child: Transform.scale(
+            scale: LayerTuning.pinkScale,
+            child: Image.asset(
+              primaryAsset,
+              fit: fit,
+              alignment: LayerTuning.pinkAlignment,
+              repeat: ImageRepeat.noRepeat,
+              filterQuality: FilterQuality.high,
+              gaplessPlayback: true,
+              errorBuilder: (_, __, ___) => Image.asset(
+                baseAsset,
+                fit: fit,
+                alignment: LayerTuning.pinkAlignment,
+                repeat: ImageRepeat.noRepeat,
+                filterQuality: FilterQuality.high,
+                gaplessPlayback: true,
+                errorBuilder: (_, __, ___) => Container(color: Colors.black),
+              ),
+            ),
+          ),
+        ),
+        if (kIsWeb)
+          Positioned.fill(
+            child: Container(
+              color: Colors.black.withValues(alpha: 0.03),
+            ),
+          ),
+        child,
+      ],
+    );
+  }
+}
