@@ -226,6 +226,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.0"
+  integration_test:
+    dependency: "direct dev"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   json_annotation:
     dependency: transitive
     description:

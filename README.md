@@ -2,6 +2,13 @@
 
 Flutter project for Android, iOS, and Web.
 
+## iOS Build Setup
+
+1. Prereqs on macOS: Xcode, CocoaPods (`sudo gem install cocoapods`).
+2. Firebase config: in Firebase Console add the iOS app with bundle id `com.example.anaMariaApp`, download `GoogleService-Info.plist`, place it at `ios/Runner/GoogleService-Info.plist`, and commit it (repo e privat). Dacă schimbă bundle id-ul, actualizează-l și în Xcode și regenerează `lib/firebase_options.dart` cu `flutterfire configure`.
+3. Prima rulare pe Mac: `flutter clean`, `flutter pub get`, apoi `cd ios && pod install && cd ..`, deschide `ios/Runner.xcworkspace` și setează Development Team + Automatic Signing, apoi `flutter run -d <device>`.
+4. Release: `flutter build ios --release` (artefactele sunt în `build/ios/ipa`). Pentru App Store folosește Xcode Archive/Distribute din workspace.
+
 ## Web Deploy (Firebase Hosting)
 
 1. Install Firebase CLI:

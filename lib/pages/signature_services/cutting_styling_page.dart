@@ -44,15 +44,15 @@ class CuttingStylingPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 14),
-
           GoldWordButton(
             icon: Icons.content_cut,
             label: 'Haircut',
             onTap: () => _open(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: 'Haircut',
                 fromPrice: '£30',
+                backgroundAsset: AppAssets.bgHaircut,
                 body:
                     'Precision cutting tailored to face shape, hair texture and lifestyle. '
                     'We focus on clean lines, balance and a shape that holds.\n\n'
@@ -61,15 +61,15 @@ class CuttingStylingPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-
           GoldWordButton(
             icon: Icons.water_drop_outlined,
             label: 'Wash & blowdry',
             onTap: () => _open(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: 'Wash & blowdry',
                 fromPrice: '£25',
+                backgroundAsset: AppAssets.bgWashBlowdry,
                 body:
                     'Luxury cleanse, scalp care and professional styling for a polished finish. '
                     'Smooth, voluminous, glossy and camera-ready.\n\n'
@@ -78,15 +78,15 @@ class CuttingStylingPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-
           GoldWordButton(
             icon: Icons.auto_awesome,
             label: 'Hair up / event styling',
             onTap: () => _open(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: 'Hair up / event styling',
                 fromPrice: '£45',
+                backgroundAsset: AppAssets.bgHairUpEventStyling,
                 body:
                     'Elegant styling for weddings, events and special occasions. '
                     'We design a look that complements your outfit, face shape and the vibe of the day.\n\n'

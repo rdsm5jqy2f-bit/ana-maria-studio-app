@@ -29,16 +29,15 @@ class _HomePageState extends State<HomePage> {
     final size = MediaQuery.sizeOf(context);
     final width = size.width;
     final height = size.height;
-    const double maxWidth = 1400;
-    final double frameWidth = width.clamp(360.0, maxWidth);
+    final double frameWidth = math.max(360.0, width);
     // Banner heights derived from intrinsic aspect ratios for full-image containment.
     final double redHeight = frameWidth / LayerTuning.redAspectRatio;
     final double blueHeight = frameWidth / LayerTuning.blueAspectRatio;
     final double greenMinHeight = math.max(height * 0.66, frameWidth / LayerTuning.greenAspectRatio);
 
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Scrollbar(
+    return ColoredBox(
+      color: Colors.black,
+      child: Scrollbar(
         controller: _scrollController,
         thumbVisibility: true,
         trackVisibility: true,

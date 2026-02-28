@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
 import '../core/app_config.dart';
 
@@ -15,6 +14,11 @@ class PinkLayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final requestedAsset = backgroundAsset;
+    final fallbackAsset = AppAssets.pinkFallback;
+    final hasCustomAsset =
+        requestedAsset != null && requestedAsset.trim().isNotEmpty && requestedAsset != fallbackAsset;
+
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -29,19 +33,30 @@ class PinkLayer extends StatelessWidget {
             ),
           ),
         ),
-        if (backgroundAsset != null)
-          Positioned.fill(
-            child: Image.asset(
-              backgroundAsset!,
-              fit: BoxFit.contain,
-              alignment: Alignment.center,
-              filterQuality: FilterQuality.high,
-              gaplessPlayback: true,
-              errorBuilder: (_, __, ___) => Container(color: Colors.black),
-            ),
-          )
-        else
-          Positioned.fill(child: Container(color: Colors.pink.shade100)),
+        Positioned.fill(
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.asset(
+                fallbackAsset,
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
+                filterQuality: FilterQuality.high,
+                gaplessPlayback: true,
+                errorBuilder: (_, __, ___) => Container(color: Colors.black),
+              ),
+              if (hasCustomAsset)
+                Image.asset(
+                  requestedAsset,
+                  fit: BoxFit.contain,
+                  alignment: Alignment.center,
+                  filterQuality: FilterQuality.high,
+                  gaplessPlayback: true,
+                  errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                ),
+            ],
+          ),
+        ),
         if (child != null)
           child!
         else

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -62,20 +60,20 @@ String titleCaseFirstOnly(String s) {
   return t[0].toUpperCase() + t.substring(1).toLowerCase();
 }
 
-/// Luxury “rainbow” (red/gold/green) repeated densely
+/// Luxury gradient (red/gold/blue) repeated densely for better contrast
 const LinearGradient kLuxuryRainbow = LinearGradient(
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
   tileMode: TileMode.repeated,
   colors: [
-    Color(0xFFB0112B), // deep red
-    Color(0xFFC9A227), // gold
-    Color(0xFF0E6E3A), // deep green
+    Color(0xFF8E0F24), // deep red
+    Color(0xFFE0B84A), // bright gold
+    Color(0xFF1B4FA8), // royal blue
     Color(0xFFB0112B),
-    Color(0xFFC9A227),
-    Color(0xFF0E6E3A),
+    Color(0xFFF1CD64),
+    Color(0xFF2B68CF),
   ],
-  stops: [0.00, 0.18, 0.34, 0.50, 0.68, 1.00],
+  stops: [0.00, 0.18, 0.36, 0.56, 0.78, 1.00],
 );
 
 class RainbowText extends StatelessWidget {
@@ -105,33 +103,58 @@ class RainbowText extends StatelessWidget {
     if (allCaps) display = text.toUpperCase();
     if (firstCapsOnly && !allCaps) display = titleCaseFirstOnly(text);
 
-    final textWidget = ShaderMask(
-      shaderCallback: (rect) => kLuxuryRainbow.createShader(rect),
-      blendMode: BlendMode.srcIn,
-      child: Text(
-        display,
-        style: TextStyle(
-          fontSize: fontSize * uiScale,
-          fontWeight: weight,
-          fontStyle: FontStyle.italic,
-          letterSpacing:
-              (headingStyle ? letterSpacing + 0.22 : letterSpacing) * uiScale,
-          height: 1.05,
-          shadows: [
-            Shadow(
-              color: Colors.black.withValues(alpha: 0.55),
-              blurRadius: 6,
-              offset: const Offset(0, 1),
-            ),
-            if (headingStyle)
-              Shadow(
-                color: Colors.black.withValues(alpha: 0.28),
-                blurRadius: 8,
-                offset: const Offset(0, 1.5),
-              ),
-          ],
+    final resolvedLetterSpacing =
+        (headingStyle ? letterSpacing + 0.22 : letterSpacing) * uiScale;
+    final resolvedFontSize = fontSize * uiScale;
+
+    final textWidget = Stack(
+      children: [
+        Text(
+          display,
+          style: TextStyle(
+            fontSize: resolvedFontSize,
+            fontWeight: weight,
+            fontStyle: FontStyle.italic,
+            decoration: TextDecoration.none,
+            decorationColor: Colors.transparent,
+            letterSpacing: resolvedLetterSpacing,
+            height: 1.05,
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = headingStyle ? 1.8 * uiScale : 1.4 * uiScale
+              ..color = const Color(0xFF1B4FA8),
+          ),
         ),
-      ),
+        ShaderMask(
+          shaderCallback: (rect) => kLuxuryRainbow.createShader(rect),
+          blendMode: BlendMode.srcIn,
+          child: Text(
+            display,
+            style: TextStyle(
+              fontSize: resolvedFontSize,
+              fontWeight: weight,
+              fontStyle: FontStyle.italic,
+              decoration: TextDecoration.none,
+              decorationColor: Colors.transparent,
+              letterSpacing: resolvedLetterSpacing,
+              height: 1.05,
+              shadows: [
+                Shadow(
+                  color: Colors.black.withValues(alpha: 0.55),
+                  blurRadius: 6,
+                  offset: const Offset(0, 1),
+                ),
+                if (headingStyle)
+                  Shadow(
+                    color: Colors.black.withValues(alpha: 0.28),
+                    blurRadius: 8,
+                    offset: const Offset(0, 1.5),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
 
     if (!headingStyle) {
@@ -175,39 +198,28 @@ class GoldWordButton extends StatelessWidget {
       vertical: UiSizes.btnRowPadV * uiScale,
     );
 
-    final button = IntrinsicWidth(
-      child: Material(
-        color: Colors.transparent,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(radius),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 8 * uiScale, sigmaY: 8 * uiScale),
-            child: InkWell(
-              onTap: onTap,
-              borderRadius: BorderRadius.circular(radius),
-              child: Container(
-                padding: padding ?? defaultPadding,
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.08),
-                  borderRadius: BorderRadius.circular(radius),
-                  border: Border.all(color: UiColors.gold, width: border),
-                ),
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (icon != null) ...[
-                        Icon(icon, size: iconSize, color: UiColors.gold),
-                        SizedBox(width: gap),
-                      ],
-                      RainbowText(label),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+    final button = Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(radius),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(radius),
+        child: Container(
+          padding: padding ?? defaultPadding,
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(radius),
+            border: Border.all(color: UiColors.gold, width: border),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (icon != null) ...[
+                Icon(icon, size: iconSize, color: UiColors.gold),
+                SizedBox(width: gap),
+              ],
+              RainbowText(label),
+            ],
           ),
         ),
       ),
@@ -244,25 +256,14 @@ class GoldPillLabel extends StatelessWidget {
       vertical: UiSizes.btnRowPadV * uiScale,
     );
 
-    return IntrinsicWidth(
-      child: Material(
-        color: Colors.transparent,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(radius),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 8 * uiScale, sigmaY: 8 * uiScale),
-            child: Container(
-              padding: padding ?? defaultPadding,
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.08),
-                borderRadius: BorderRadius.circular(radius),
-                border: Border.all(color: UiColors.gold, width: border),
-              ),
-              child: RainbowText(label, firstCapsOnly: false),
-            ),
-          ),
-        ),
+    return Container(
+      padding: padding ?? defaultPadding,
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(radius),
+        border: Border.all(color: UiColors.gold, width: border),
       ),
+      child: RainbowText(label, firstCapsOnly: false),
     );
   }
 }

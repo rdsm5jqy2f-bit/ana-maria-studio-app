@@ -19,8 +19,14 @@ import '../section_page.dart';
 class GreenLayer extends StatelessWidget {
   const GreenLayer({super.key});
 
-  void _go(BuildContext context, Widget page) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => page));
+  void _go(BuildContext context, Widget page, String title) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        settings:
+            RouteSettings(name: '/pink/${AppAssets.slugFromTitle(title)}'),
+        builder: (_) => page,
+      ),
+    );
   }
 
   @override
@@ -38,9 +44,10 @@ class GreenLayer extends StatelessWidget {
     final primaryAsset = AppAssets.greenLayerBg;
     final alignment = LayerTuning.greenAlignment;
     final maxMenuWidth = isWideWeb
-      ? math.max(440.0, math.min(720.0, 520 * uiScale))
-      : double.infinity;
-    final minHeight = math.max(size.height * 0.66, size.width / LayerTuning.greenAspectRatio);
+        ? math.max(440.0, math.min(720.0, 520 * uiScale))
+        : double.infinity;
+    final minHeight =
+        math.max(size.height * 0.66, size.width / LayerTuning.greenAspectRatio);
 
     return Container(
       constraints: BoxConstraints(minHeight: minHeight),
@@ -74,7 +81,8 @@ class GreenLayer extends StatelessWidget {
                   icon: Icons.content_cut,
                   label: 'Signature services',
                   onTap: () {
-                    _go(context, const SignatureServicesPage());
+                    _go(context, const SignatureServicesPage(),
+                        'Signature services');
                   },
                 ),
                 SizedBox(height: rowGap),
@@ -82,7 +90,7 @@ class GreenLayer extends StatelessWidget {
                   icon: Icons.school,
                   label: 'Academy',
                   onTap: () {
-                    _go(context, const AcademyPage());
+                    _go(context, const AcademyPage(), 'Academy');
                   },
                 ),
                 SizedBox(height: rowGap),
@@ -90,7 +98,7 @@ class GreenLayer extends StatelessWidget {
                   icon: Icons.flash_on,
                   label: 'Fast consultation',
                   onTap: () {
-                    _go(context, const ConsultationPage());
+                    _go(context, const ConsultationPage(), 'Consultation');
                   },
                 ),
                 SizedBox(height: rowGap),
@@ -98,7 +106,7 @@ class GreenLayer extends StatelessWidget {
                   icon: Icons.spa_outlined,
                   label: 'Reiki',
                   onTap: () {
-                    _go(context, const ReikiPage());
+                    _go(context, const ReikiPage(), 'Reiki');
                   },
                 ),
                 SizedBox(height: rowGap),
@@ -106,7 +114,7 @@ class GreenLayer extends StatelessWidget {
                   icon: Icons.photo_library_outlined,
                   label: 'Gallery',
                   onTap: () {
-                    _go(context, const GalleryCategoriesPage());
+                    _go(context, const GalleryCategoriesPage(), 'Gallery');
                   },
                 ),
                 SizedBox(height: rowGap),
@@ -114,7 +122,7 @@ class GreenLayer extends StatelessWidget {
                   icon: Icons.location_on_outlined,
                   label: 'Location',
                   onTap: () {
-                    _go(context, const LocationPage());
+                    _go(context, const LocationPage(), 'Location');
                   },
                 ),
                 SizedBox(height: rowGap),
@@ -122,7 +130,7 @@ class GreenLayer extends StatelessWidget {
                   icon: Icons.contact_phone_outlined,
                   label: 'Contact',
                   onTap: () {
-                    _go(context, const ContactPage());
+                    _go(context, const ContactPage(), 'Contact');
                   },
                 ),
                 SizedBox(height: rowGap),
@@ -130,7 +138,7 @@ class GreenLayer extends StatelessWidget {
                   icon: Icons.info_outline,
                   label: 'About',
                   onTap: () {
-                    _go(context, const AboutPage());
+                    _go(context, const AboutPage(), 'About');
                   },
                 ),
                 SizedBox(height: rowGap),
@@ -138,7 +146,7 @@ class GreenLayer extends StatelessWidget {
                   icon: Icons.policy_outlined,
                   label: 'Prices & policy',
                   onTap: () {
-                    _go(context, const PricesPolicyPage());
+                    _go(context, const PricesPolicyPage(), 'Prices & policy');
                   },
                 ),
                 SizedBox(height: 42 * uiScale),

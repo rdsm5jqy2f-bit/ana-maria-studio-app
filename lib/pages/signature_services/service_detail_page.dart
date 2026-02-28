@@ -8,11 +8,13 @@ class ServiceDetail {
   final String title;
   final String fromPrice;
   final String body;
+  final String? backgroundAsset;
 
   const ServiceDetail({
     required this.title,
     required this.fromPrice,
     required this.body,
+    this.backgroundAsset,
   });
 }
 
@@ -24,7 +26,7 @@ class ServiceDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionPage(
-      backgroundAsset: AppAssets.bgServiceDetail,
+      backgroundAsset: detail.backgroundAsset ?? AppAssets.bgServiceDetail,
       title: detail.title,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

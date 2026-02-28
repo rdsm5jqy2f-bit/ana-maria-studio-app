@@ -43,15 +43,15 @@ class ColourSignaturePage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 14),
-
           GoldWordButton(
             icon: Icons.brush_outlined,
             label: 'Balayage',
             onTap: () => _open(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: 'Balayage',
                 fromPrice: '£180',
+                backgroundAsset: AppAssets.bgBalayage,
                 body:
                     'A hand-painted highlighting technique designed to create soft, seamless dimension and natural light reflection. '
                     'Placement is fully personalised to your haircut, face shape and lifestyle, so the result looks expensive and effortless.\n\n'
@@ -60,15 +60,15 @@ class ColourSignaturePage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-
           GoldWordButton(
             icon: Icons.air,
             label: 'AirTouch',
             onTap: () => _open(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: 'AirTouch',
                 fromPrice: '£180',
+                backgroundAsset: AppAssets.bgAirtouch,
                 body:
                     'A premium air-separation technique delivering ultra-soft blends and long-lasting brightness without harsh lines. '
                     'Ideal if you want a modern blonde with minimal regrowth visibility.\n\n'
@@ -77,15 +77,15 @@ class ColourSignaturePage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-
           GoldWordButton(
             icon: Icons.tune,
             label: 'Colour correction',
             onTap: () => _open(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: 'Colour correction',
                 fromPrice: '£180',
+                backgroundAsset: AppAssets.bgColourCorrection,
                 body:
                     'A complex professional service designed to fix uneven tones, banding, unwanted warmth, patchy lightening or previous colour errors. '
                     'This is advanced work: we analyse, neutralise and rebuild tone while protecting hair integrity.\n\n'
@@ -94,15 +94,15 @@ class ColourSignaturePage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-
           GoldWordButton(
             icon: Icons.color_lens_outlined,
             label: 'Full colour / roots',
             onTap: () => _open(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: 'Full colour / roots',
                 fromPrice: '£80',
+                backgroundAsset: AppAssets.bgFullColourRoots,
                 body:
                     'Professional colour application tailored to your hair history, scalp sensitivity and desired result. '
                     'We focus on clean saturation, balanced tone and long-lasting shine.\n\n'
