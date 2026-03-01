@@ -1,1 +1,51 @@
-{"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"**","destination":"/index.html"}],"headers":[{"source":"**/*.@(js|css)","headers":[{"key":"Cache-Control","value":"public,max-age=31536000,immutable"}]},{"source":"index.html","headers":[{"key":"Cache-Control","value":"no-cache"}]}]},"flutter":{"platforms":{"android":{"default":{"projectId":"ana-maria-studio","appId":"1:403287487378:android:f608a9d85eaf49ef8c874b","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"ana-maria-studio","configurations":{"ios":"1:403287487378:ios:dc8a7cc326584fcf8c874b"}}}}}}
+{
+  "hosting": {
+    "public": "build/web",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public,max-age=31536000,immutable"
+          }
+        ]
+      },
+      {
+        "source": "index.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      }
+    ]
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "ana-maria-studio",
+          "appId": "1:403287487378:android:f608a9d85eaf49ef8c874b",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "ana-maria-studio",
+          "configurations": {
+            "ios": "1:403287487378:ios:dc8a7cc326584fcf8c874b"
+          }
+        }
+      }
+    }
+  }
+}
