@@ -1,4 +1,4 @@
-package com.example.ana_maria_app
+package com.anamaria.studio
 
 import io.flutter.embedding.android.FlutterActivity
 
