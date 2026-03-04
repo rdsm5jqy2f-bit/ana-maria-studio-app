@@ -22,6 +22,34 @@ Flutter project for Android, iOS, and Web.
 5. Deploy:
 	- `firebase deploy --only hosting`
 
+## Custom Domain Setup (www redirect)
+
+Follow these steps to configure the www subdomain redirect to the apex domain.
+
+### Step 1: DNS Provider Configuration
+
+In your DNS provider, add a CNAME record:
+
+| Field        | Value                   |
+|--------------|-------------------------|
+| Host/Name    | www                     |
+| Type         | CNAME                   |
+| Target/Value | ghs.googlehosted.com    |
+| TTL          | 300 (or Auto)           |
+
+### Step 2: Firebase Hosting Configuration
+
+1. Go to Firebase Console → Hosting → Custom domains
+2. Add `www.anamariastudio.co.uk` to the same hosting site
+3. Set Redirect to `https://anamariastudio.co.uk` (Permanent 301)
+
+### Step 3: Verification
+
+Wait for DNS propagation (5 min - 24h, usually quick), then test:
+
+- `http://www.anamariastudio.co.uk` → should redirect to `https://anamariastudio.co.uk`
+- `https://www.anamariastudio.co.uk` → should redirect to `https://anamariastudio.co.uk`
+
 ## Remote Gallery (no rebuild for new photos)
 
 The gallery now loads images from Firebase Storage first, then falls back to local assets if remote folders are empty or unavailable.
