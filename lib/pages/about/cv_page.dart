@@ -20,9 +20,11 @@ class CvPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RainbowText('Ana Maria', fontSize: 16, weight: FontWeight.w900, headingStyle: true),
+                RainbowText('Ana Maria',
+                    fontSize: 16, weight: FontWeight.w900, headingStyle: true),
                 SizedBox(height: 8),
-                RainbowParagraph('Master Hairstylist | Educator | Academy Director'),
+                RainbowParagraph(
+                    'Master Hairstylist | Educator | Academy Director'),
               ],
             ),
           ),
@@ -31,7 +33,10 @@ class CvPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RainbowText('Certification', fontSize: 15.5, weight: FontWeight.w900, headingStyle: true),
+                RainbowText('Certification',
+                    fontSize: 15.5,
+                    weight: FontWeight.w900,
+                    headingStyle: true),
                 SizedBox(height: 8),
                 RainbowParagraph(
                   'Internationally accredited diplomas recognised worldwide, enabling professional practice across Europe and international markets.',
@@ -44,7 +49,10 @@ class CvPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RainbowText('Professional education', fontSize: 15.5, weight: FontWeight.w900, headingStyle: true),
+                RainbowText('Professional education',
+                    fontSize: 15.5,
+                    weight: FontWeight.w900,
+                    headingStyle: true),
                 SizedBox(height: 8),
                 RainbowParagraph(
                   '1998–2000 — Vidal Sassoon Academy, France\n'
@@ -62,10 +70,13 @@ class CvPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RainbowText('Professional experience', fontSize: 15.5, weight: FontWeight.w900, headingStyle: true),
+                RainbowText('Professional experience',
+                    fontSize: 15.5,
+                    weight: FontWeight.w900,
+                    headingStyle: true),
                 SizedBox(height: 8),
                 RainbowParagraph(
-                  'Founder & Master Hairstylist — Ana Maria Hair Studio, London, UK (2012–Present)\n'
+                  'Founder & Master Hairstylist — Ana Maria Studio, London, UK (2012–Present)\n'
                   '• Founder of a premium London-based salon\n'
                   '• Personalised image consultancy and transformation services\n'
                   '• Stylist training and team coordination\n'
@@ -91,7 +102,10 @@ class CvPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RainbowText('Achievements', fontSize: 15.5, weight: FontWeight.w900, headingStyle: true),
+                RainbowText('Achievements',
+                    fontSize: 15.5,
+                    weight: FontWeight.w900,
+                    headingStyle: true),
                 SizedBox(height: 8),
                 RainbowParagraph(
                   '• Participation in 148 national and international hairstyling competitions\n'
@@ -107,7 +121,10 @@ class CvPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RainbowText('Specialisations', fontSize: 15.5, weight: FontWeight.w900, headingStyle: true),
+                RainbowText('Specialisations',
+                    fontSize: 15.5,
+                    weight: FontWeight.w900,
+                    headingStyle: true),
                 SizedBox(height: 8),
                 RainbowParagraph(
                   '• Classic and avant-garde haircutting (bob, pixie, shag, geometric structures)\n'
@@ -124,7 +141,10 @@ class CvPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RainbowText('Languages', fontSize: 15.5, weight: FontWeight.w900, headingStyle: true),
+                RainbowText('Languages',
+                    fontSize: 15.5,
+                    weight: FontWeight.w900,
+                    headingStyle: true),
                 SizedBox(height: 8),
                 RainbowParagraph(
                   '• Romanian — Native\n'

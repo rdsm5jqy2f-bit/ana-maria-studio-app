@@ -1,11 +1,11 @@
 {
-    "name": "Ana Maria Hair Studio & Academy",
+    "name": "Ana Maria Studio & Academy",
     "short_name": "Ana Maria",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Professional hair styling, colour transformations and certified hair courses in Leytonstone, London.",
+    "description": "Hair Salon in Leytonstone London E11 specialising in balayage, hair colouring, hair extensions and signature transformations.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

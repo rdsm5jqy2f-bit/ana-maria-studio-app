@@ -18,7 +18,8 @@ class AboutPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SectionCard(
-            child: RainbowParagraph('''There are careers chosen by logic, and there are callings that begin before memory.
+            child: RainbowParagraph(
+                '''There are careers chosen by logic, and there are callings that begin before memory.
 
 Ana Maria’s journey into hairdressing started at the age of five. What began as childhood instinct became discipline, precision and a lifelong commitment to excellence.
 
@@ -33,14 +34,17 @@ By 21, she was already teaching. Shortly after, she advanced to leadership and a
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RainbowText('Career highlights', fontSize: 15.5, weight: FontWeight.w900, headingStyle: true),
+                RainbowText('Career highlights',
+                    fontSize: 15.5,
+                    weight: FontWeight.w900,
+                    headingStyle: true),
                 SizedBox(height: 8),
                 RainbowParagraph(
                   '• International education in precision cutting, colour and styling\n'
                   '• Academy educator, supervisor and manager roles\n'
                   '• 148 national and international hairstyling competitions\n'
                   '• Advanced specialisation in balayage, AirTouch and colour correction\n'
-                  '• Founder of Ana Maria Hair Studio in London\n'
+                  '• Founder of Ana Maria Studio in London\n'
                   '• Ongoing development of Ana Maria Studio & Academy',
                 ),
               ],
@@ -51,7 +55,10 @@ By 21, she was already teaching. Shortly after, she advanced to leadership and a
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RainbowText('Philosophy', fontSize: 15.5, weight: FontWeight.w900, headingStyle: true),
+                RainbowText('Philosophy',
+                    fontSize: 15.5,
+                    weight: FontWeight.w900,
+                    headingStyle: true),
                 SizedBox(height: 8),
                 RainbowParagraph(
                   'For Ana Maria, hair is architecture: shape, colour harmony and movement designed for the real person, not for a generic trend.\n\n'

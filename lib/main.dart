@@ -36,15 +36,15 @@ class AnaMariaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Ana Maria Hair Studio & Academy',
+      title: 'Ana Maria Studio & Academy',
       theme: ThemeData(
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
         useMaterial3: true,
         textTheme: ThemeData.dark().textTheme.apply(
-          bodyColor: const Color(0xFFC9A227),
-          displayColor: const Color(0xFFC9A227),
-        ),
+              bodyColor: const Color(0xFFC9A227),
+              displayColor: const Color(0xFFC9A227),
+            ),
       ),
       home: HomePage(),
     );

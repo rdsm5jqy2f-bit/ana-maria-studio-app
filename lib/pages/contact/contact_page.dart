@@ -17,14 +17,14 @@ class ContactPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SectionCard(
-            child: RainbowParagraph('''For fast, accurate quotes we use WhatsApp.
+            child:
+                RainbowParagraph('''For fast, accurate quotes we use WhatsApp.
 Send clear photos in natural light (front + back) and a short note about your hair history and goal.
 We reply as quickly as possible with guidance, timing and a “starting from” estimate.
 
 Prefer to speak? Call the studio and we can advise the best next step.'''),
           ),
           const SizedBox(height: 14),
-
           GoldWordButton(
             icon: Icons.chat_bubble_outline,
             label: 'Book Now',
@@ -43,8 +43,30 @@ Prefer to speak? Call the studio and we can advise the best next step.'''),
             onTap: () => openUrl(AppLinks.phoneCall),
           ),
           const SizedBox(height: 14),
-
-          const RainbowText('Social', fontSize: 15.5, weight: FontWeight.w900, headingStyle: true),
+          const SectionCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RainbowText('Google reviews',
+                    fontSize: 15.5,
+                    weight: FontWeight.w900,
+                    headingStyle: true),
+                SizedBox(height: 8),
+                RainbowParagraph(
+                  'If you enjoyed your visit, a recent Google review helps more local clients discover Ana Maria Studio & Academy as a trusted Hair Salon in Leytonstone London E11.',
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          GoldWordButton(
+            icon: Icons.star_outline,
+            label: 'Leave a Google review',
+            onTap: () => openUrl(AppLinks.googleReview),
+          ),
+          const SizedBox(height: 14),
+          const RainbowText('Social',
+              fontSize: 15.5, weight: FontWeight.w900, headingStyle: true),
           const SizedBox(height: 10),
           GoldWordButton(
             icon: Icons.facebook,
