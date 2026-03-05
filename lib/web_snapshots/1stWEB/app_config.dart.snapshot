@@ -89,7 +89,7 @@ class AppAssets {
 
 class AppLinks {
   static const String address =
-      'Ana Maria Hair Studio & Academy\n541 High Road\nLeytonstone\nLondon E11 4PB';
+  'Ana Maria Studio & Academy\n541 High Road\nLeytonstone\nLondon E11 4PB';
   static const String googleMapsQuery =
       'https://www.google.com/maps/search/?api=1&query=541+High+Road+Leytonstone+London+E11+4PB';
   static const String whatsappBooking = 'https://wa.me/447427216249';
