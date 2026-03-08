@@ -60,21 +60,21 @@ String titleCaseFirstOnly(String s) {
   return t[0].toUpperCase() + t.substring(1).toLowerCase();
 }
 
-/// Premium gold-ivory fill used for highlighted text across the app.
-const LinearGradient kLuxuryGoldIvory = LinearGradient(
+/// Ivory chrome fill used for highlighted text across the app.
+const LinearGradient kLuxuryIvoryChrome = LinearGradient(
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
   tileMode: TileMode.clamp,
   colors: [
-    Color(0xFFB8891E), // rich antique gold
-    Color(0xFFF2E6CC), // warm ivory
-    Color(0xFFD7A93D), // medium gold
-    Color(0xFFFFF7E8), // soft light ivory
+    Color(0xFFE7DFC9), // base ivory
+    Color(0xFFFFFCF3), // bright ivory highlight
+    Color(0xFFDCCFBA), // soft chrome depth
+    Color(0xFFF5EEDC), // warm ivory finish
   ],
   stops: [0.00, 0.36, 0.68, 1.00],
 );
 
-const Color kLuxuryOutlineRed = Color(0xFFB11226);
+const Color kLuxuryOutlineGold = Color(0xFFC9A227);
 
 class RainbowText extends StatelessWidget {
   final String text;
@@ -122,11 +122,11 @@ class RainbowText extends StatelessWidget {
             foreground: Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = headingStyle ? 1.8 * uiScale : 1.4 * uiScale
-              ..color = kLuxuryOutlineRed,
+              ..color = kLuxuryOutlineGold,
           ),
         ),
         ShaderMask(
-          shaderCallback: (rect) => kLuxuryGoldIvory.createShader(rect),
+          shaderCallback: (rect) => kLuxuryIvoryChrome.createShader(rect),
           blendMode: BlendMode.srcIn,
           child: Text(
             display,
