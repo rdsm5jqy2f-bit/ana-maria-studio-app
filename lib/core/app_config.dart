@@ -68,8 +68,8 @@ class AppAssets {
       pinkNamed('hair_up_event_styling.jpg');
   static final String bgSignatureTransformation =
       pinkNamed('signature_transformation.jpg');
-  static final String bgHairTherapy = pinkNamed('hair_therapy.jpg');
-  static final String bgHairExtensions = pinkNamed('hair_extensions.jpg');
+    static final String bgHairTherapy = pinkNamed('hair_therapy.jpg');
+    static final String bgHairExtensions = pinkNamed('hair_extensions.jpg');
 
   static final String bgFastConsult = pinkNamed('fast_consult.jpg');
   static final String bgReiki = pinkNamed('reiki.jpg');

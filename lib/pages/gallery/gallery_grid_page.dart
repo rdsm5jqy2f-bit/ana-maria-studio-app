@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show AssetManifest, rootBundle;
 import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../section_page.dart';
@@ -87,13 +86,11 @@ class GalleryGridPage extends StatelessWidget {
   }
 
   Future<List<String>> _loadLocalAssetsFromManifest() async {
-    try {
-      final manifestContent = await rootBundle.loadString('AssetManifest.json');
-      final Map<String, dynamic> manifestMap =
-          jsonDecode(manifestContent) as Map<String, dynamic>;
+    final basePath = _folderPath();
 
-      final basePath = _folderPath();
-      final assets = manifestMap.keys
+    try {
+      final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+      final assets = manifest.listAssets()
           .where((path) => path.startsWith('$basePath/'))
           .where(_isSupportedImage)
           .toList()
@@ -217,7 +214,7 @@ class GalleryGridPage extends StatelessWidget {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Material(
-                    color: Colors.black.withValues(alpha: 0.30 * 255),
+                    color: Colors.black.withValues(alpha: 0.30),
                     child: InkWell(
                       onTap: () => _openImageViewer(context, imagePath),
                       child: imagePath.startsWith('http')

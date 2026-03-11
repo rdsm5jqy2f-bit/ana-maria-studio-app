@@ -70,7 +70,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '403287487378',
     projectId: 'ana-maria-studio',
     storageBucket: 'ana-maria-studio.firebasestorage.app',
-    iosBundleId: 'com.example.anaMariaApp',
+    iosBundleId: 'com.anamaria.studio',
   );
 
 }

@@ -65,10 +65,11 @@ class SignatureServicesPage extends StatelessWidget {
             label: 'Hair therapy',
             onTap: () => _openDetail(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: SignatureTexts.therapyTitle,
                 fromPrice: SignatureTexts.therapyItemFrom,
                 body: SignatureTexts.therapyBody,
+                backgroundAsset: AppAssets.bgHairTherapy,
               ),
             ),
           ),
@@ -79,10 +80,11 @@ class SignatureServicesPage extends StatelessWidget {
             label: 'Hair extensions',
             onTap: () => _openDetail(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: SignatureTexts.extensionsTitle,
                 fromPrice: SignatureTexts.extensionsItemFrom,
                 body: SignatureTexts.extensionsBody,
+                backgroundAsset: AppAssets.bgHairExtensions,
               ),
             ),
           ),
@@ -93,10 +95,11 @@ class SignatureServicesPage extends StatelessWidget {
             label: 'Bridal & special events',
             onTap: () => _openDetail(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: SignatureTexts.bridalTitle,
                 fromPrice: SignatureTexts.bridalFrom,
                 body: SignatureTexts.bridalBody,
+                backgroundAsset: AppAssets.bgBridal,
               ),
             ),
           ),
@@ -107,10 +110,11 @@ class SignatureServicesPage extends StatelessWidget {
             label: 'Consultation (service page)',
             onTap: () => _openDetail(
               context,
-              const ServiceDetail(
+              ServiceDetail(
                 title: SignatureTexts.consultServiceTitle,
                 fromPrice: SignatureTexts.consultServiceFrom,
                 body: SignatureTexts.consultServiceBody,
+                backgroundAsset: AppAssets.bgConsultService,
               ),
             ),
           ),

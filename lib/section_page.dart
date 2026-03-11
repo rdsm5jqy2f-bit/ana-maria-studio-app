@@ -39,16 +39,19 @@ class _SectionPageState extends State<SectionPage> {
     final frameWidth = math.max(360.0, size.width);
     final redH = frameWidth / LayerTuning.redAspectRatio;
     final pinkMinH = math.max(
-        viewportHeight * 0.77, frameWidth / LayerTuning.pinkAspectRatio);
+      viewportHeight - redH,
+      frameWidth / LayerTuning.pinkAspectRatio,
+    );
     final requestedAsset = widget.backgroundAsset;
     final fallbackAsset = AppAssets.pinkByTitle(widget.title);
+    final resolvedBackgroundAsset =
+      (requestedAsset != null && requestedAsset.trim().isNotEmpty)
+        ? requestedAsset
+        : fallbackAsset;
     final resolvedPageId =
         (widget.pageId != null && widget.pageId!.trim().isNotEmpty)
             ? AppAssets.slugFromTitle(widget.pageId!)
             : AppAssets.slugFromTitle(widget.title);
-    final hasCustomAsset = requestedAsset != null &&
-        requestedAsset.trim().isNotEmpty &&
-        requestedAsset != fallbackAsset;
 
     Widget content = Column(
       key: ValueKey<String>('pink-page-$resolvedPageId'),
@@ -72,29 +75,14 @@ class _SectionPageState extends State<SectionPage> {
                     offset: LayerTuning.pinkOffset,
                     child: Transform.scale(
                       scale: LayerTuning.pinkScale,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Image.asset(
-                            fallbackAsset,
-                            fit: BoxFit.contain,
-                            alignment: LayerTuning.pinkAlignment,
-                            filterQuality: FilterQuality.high,
-                            gaplessPlayback: true,
-                            errorBuilder: (_, __, ___) =>
-                                Container(color: Colors.black),
-                          ),
-                          if (hasCustomAsset)
-                            Image.asset(
-                              requestedAsset,
-                              fit: BoxFit.contain,
-                              alignment: LayerTuning.pinkAlignment,
-                              filterQuality: FilterQuality.high,
-                              gaplessPlayback: true,
-                              errorBuilder: (_, __, ___) =>
-                                  const SizedBox.shrink(),
-                            ),
-                        ],
+                      child: Image.asset(
+                        resolvedBackgroundAsset,
+                        fit: BoxFit.cover,
+                        alignment: LayerTuning.pinkAlignment,
+                        filterQuality: FilterQuality.high,
+                        gaplessPlayback: true,
+                        errorBuilder: (_, __, ___) =>
+                            Container(color: Colors.black),
                       ),
                     ),
                   ),

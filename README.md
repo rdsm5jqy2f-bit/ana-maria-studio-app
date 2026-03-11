@@ -4,10 +4,11 @@ Flutter project for Android, iOS, and Web.
 
 ## iOS Build Setup
 
-1. Prereqs on macOS: Xcode, CocoaPods (`sudo gem install cocoapods`).
-2. Firebase config: in Firebase Console add the iOS app with bundle id `com.example.anaMariaApp`, download `GoogleService-Info.plist`, place it at `ios/Runner/GoogleService-Info.plist`, and commit it (repo e privat). Dacă schimbă bundle id-ul, actualizează-l și în Xcode și regenerează `lib/firebase_options.dart` cu `flutterfire configure`.
-3. Prima rulare pe Mac: `flutter clean`, `flutter pub get`, apoi `cd ios && pod install && cd ..`, deschide `ios/Runner.xcworkspace` și setează Development Team + Automatic Signing, apoi `flutter run -d <device>`.
-4. Release: `flutter build ios --release` (artefactele sunt în `build/ios/ipa`). Pentru App Store folosește Xcode Archive/Distribute din workspace.
+1. Prerequisites on macOS: Xcode, CocoaPods (`sudo gem install cocoapods`).
+2. Firebase config: in Firebase Console add the iOS app with bundle id `com.anamaria.studio`, download `GoogleService-Info.plist`, place it at `ios/Runner/GoogleService-Info.plist`, and commit it (private repository).
+3. If you ever change the bundle id, update it in Xcode and regenerate `lib/firebase_options.dart` with `flutterfire configure`.
+4. First run on Mac: `flutter clean`, `flutter pub get`, then `cd ios && pod install && cd ..`, open `ios/Runner.xcworkspace`, set Development Team + Automatic Signing, then run `flutter run -d <device>`.
+5. Release: `flutter build ios --release` (artifacts are generated in `build/ios/ipa`). For App Store submission, use Xcode Archive/Distribute from the workspace.
 
 ## Web Deploy (Firebase Hosting)
 
