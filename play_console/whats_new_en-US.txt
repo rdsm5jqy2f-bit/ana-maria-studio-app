@@ -1,0 +1,1 @@
+Improved page rendering and visual consistency across service screens. Fixed gallery asset loading behavior for a smoother experience. Updated Android and iOS release configuration and metadata for a cleaner production rollout.
