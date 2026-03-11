@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
 class AppConfig {
   static const String appName = 'Ana Maria Studio & Academy';
-  static bool get enableRemoteGallery => !kIsWeb;
+  static bool get enableRemoteGallery => true;
   static const String remoteGalleryRoot = 'gallery';
 }
 

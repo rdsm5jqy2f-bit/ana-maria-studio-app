@@ -192,7 +192,7 @@ class GalleryGridPage extends StatelessWidget {
             return const Padding(
               padding: EdgeInsets.all(12),
               child: RainbowParagraph(
-                'No images found. Check your asset paths and pubspec.yaml.',
+                'No images available right now. Check your internet connection and try again.',
               ),
             );
           }

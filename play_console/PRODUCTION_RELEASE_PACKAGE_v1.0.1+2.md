@@ -10,8 +10,8 @@ Prepared on: 2026-03-11
 - Version code: 2
 - Artifact type: Android App Bundle (.aab)
 - Artifact path: C:\Users\acead\dev\flutter_projects\ana_maria_app\build\app\outputs\bundle\release\app-release.aab
-- Artifact size: 289063429 bytes
-- Last build timestamp: 2026-03-11 18:54:21
+- Artifact size: 56556811 bytes (53.94 MB)
+- Last build timestamp: 2026-03-11 19:24:19
 - Git branch: main
 - Release commits:
   - e395c62dcc7168bbd7b0ab07ca16156ed4664d8e
@@ -87,6 +87,6 @@ Ana Maria Studio & Academy
 - Validate:
   - Home navigation
   - Signature services pages
-  - Gallery loading
+  - Gallery loading (internet required for remote gallery feed)
   - Contact/WhatsApp links
   - Location maps open correctly
