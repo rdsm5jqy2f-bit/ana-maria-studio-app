@@ -18,7 +18,7 @@ class UiSizes {
   static const double btnRadius = 22;
   static const double btnBorder = 1.6;
   static const double btnIcon = 18;
-  static const double btnFont = 15.5;
+  static const double btnFont = 15.8;
   static const double btnGap = 8;
   static const double btnRowPadH = 10;
   static const double btnRowPadV = 8;
@@ -26,6 +26,8 @@ class UiSizes {
 
 class UiColors {
   static const Color gold = Color(0xFFC9A227);
+  static const Color ivory = Color(0xFFFFF6E6);
+  static const Color ivoryStrong = Color(0xFFFFF9EF);
   static const Color black = Colors.black;
 }
 
@@ -60,21 +62,22 @@ String titleCaseFirstOnly(String s) {
   return t[0].toUpperCase() + t.substring(1).toLowerCase();
 }
 
-/// Ivory chrome fill used for highlighted text across the app.
-const LinearGradient kLuxuryIvoryChrome = LinearGradient(
-  begin: Alignment.centerLeft,
-  end: Alignment.centerRight,
-  tileMode: TileMode.clamp,
-  colors: [
-    Color(0xFFE7DFC9), // base ivory
-    Color(0xFFFFFCF3), // bright ivory highlight
-    Color(0xFFDCCFBA), // soft chrome depth
-    Color(0xFFF5EEDC), // warm ivory finish
-  ],
-  stops: [0.00, 0.36, 0.68, 1.00],
-);
+const Color kLuxuryIvoryText = UiColors.ivoryStrong;
+const Color kLuxuryOutlineGold = Color(0xFFD4AF37);
 
-const Color kLuxuryOutlineGold = Color(0xFFC9A227);
+const List<String> kCalligraphicFallback = <String>[
+  'Snell Roundhand',
+  'Segoe Script',
+  'Lucida Handwriting',
+  'Times New Roman',
+];
+
+const List<String> kReadableBodyFallback = <String>[
+  'SF Pro Text',
+  'Segoe UI',
+  'Roboto',
+  'Arial',
+];
 
 class RainbowText extends StatelessWidget {
   final String text;
@@ -102,9 +105,19 @@ class RainbowText extends StatelessWidget {
     String display = text;
     if (allCaps) display = text.toUpperCase();
     if (firstCapsOnly && !allCaps) display = titleCaseFirstOnly(text);
+    final useCalligraphic =
+        headingStyle ||
+        (weight.value >= FontWeight.w800.value && fontSize >= 16.0);
+    final resolvedFontFamily = useCalligraphic ? 'Times New Roman' : 'Roboto';
+    final resolvedFontFallback = useCalligraphic
+        ? kCalligraphicFallback
+        : kReadableBodyFallback;
+    final resolvedFontStyle = useCalligraphic
+        ? FontStyle.italic
+        : FontStyle.normal;
 
     final resolvedLetterSpacing =
-        (headingStyle ? letterSpacing + 0.22 : letterSpacing) * uiScale;
+        (useCalligraphic ? letterSpacing + 0.20 : letterSpacing) * uiScale;
     final resolvedFontSize = fontSize * uiScale;
 
     final textWidget = Stack(
@@ -114,56 +127,51 @@ class RainbowText extends StatelessWidget {
           style: TextStyle(
             fontSize: resolvedFontSize,
             fontWeight: weight,
-            fontStyle: FontStyle.italic,
+            fontFamily: resolvedFontFamily,
+            fontFamilyFallback: resolvedFontFallback,
+            fontStyle: resolvedFontStyle,
             decoration: TextDecoration.none,
             decorationColor: Colors.transparent,
             letterSpacing: resolvedLetterSpacing,
-            height: 1.05,
+            height: useCalligraphic ? 1.06 : 1.14,
             foreground: Paint()
               ..style = PaintingStyle.stroke
-              ..strokeWidth = headingStyle ? 1.8 * uiScale : 1.4 * uiScale
+              ..strokeWidth = useCalligraphic ? 2.3 * uiScale : 1.8 * uiScale
               ..color = kLuxuryOutlineGold,
           ),
         ),
-        ShaderMask(
-          shaderCallback: (rect) => kLuxuryIvoryChrome.createShader(rect),
-          blendMode: BlendMode.srcIn,
-          child: Text(
-            display,
-            style: TextStyle(
-              fontSize: resolvedFontSize,
-              fontWeight: weight,
-              fontStyle: FontStyle.italic,
-              decoration: TextDecoration.none,
-              decorationColor: Colors.transparent,
-              letterSpacing: resolvedLetterSpacing,
-              height: 1.05,
-              shadows: [
-                Shadow(
-                  color: Colors.black.withValues(alpha: 0.55),
-                  blurRadius: 6,
-                  offset: const Offset(0, 1),
-                ),
-                if (headingStyle)
-                  Shadow(
-                    color: Colors.black.withValues(alpha: 0.28),
-                    blurRadius: 8,
-                    offset: const Offset(0, 1.5),
-                  ),
-              ],
-            ),
+        Text(
+          display,
+          style: TextStyle(
+            fontSize: resolvedFontSize,
+            fontWeight: weight,
+            fontFamily: resolvedFontFamily,
+            fontFamilyFallback: resolvedFontFallback,
+            fontStyle: resolvedFontStyle,
+            color: kLuxuryIvoryText,
+            decoration: TextDecoration.none,
+            decorationColor: Colors.transparent,
+            letterSpacing: resolvedLetterSpacing,
+            height: useCalligraphic ? 1.06 : 1.14,
+            shadows: [
+              Shadow(
+                color: Colors.black.withValues(alpha: 0.36),
+                blurRadius: 2.4,
+                offset: const Offset(0, 1),
+              ),
+            ],
           ),
         ),
       ],
     );
 
-    if (!headingStyle) {
+    if (!useCalligraphic) {
       return textWidget;
     }
 
     return Transform(
       alignment: Alignment.centerLeft,
-      transform: Matrix4.identity()..setEntry(0, 1, -0.07),
+      transform: Matrix4.identity()..setEntry(0, 1, -0.03),
       child: textWidget,
     );
   }
@@ -207,7 +215,7 @@ class GoldWordButton extends StatelessWidget {
         child: Container(
           padding: padding ?? defaultPadding,
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.08),
+            color: Colors.black.withValues(alpha: 0.44),
             borderRadius: BorderRadius.circular(radius),
             border: Border.all(color: UiColors.gold, width: border),
           ),
@@ -229,10 +237,7 @@ class GoldWordButton extends StatelessWidget {
       return button;
     }
 
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: button,
-    );
+    return Align(alignment: Alignment.centerLeft, child: button);
   }
 }
 
@@ -240,11 +245,7 @@ class GoldPillLabel extends StatelessWidget {
   final String label;
   final EdgeInsets? padding;
 
-  const GoldPillLabel(
-    this.label, {
-    super.key,
-    this.padding,
-  });
+  const GoldPillLabel(this.label, {super.key, this.padding});
 
   @override
   Widget build(BuildContext context) {
@@ -259,7 +260,7 @@ class GoldPillLabel extends StatelessWidget {
     return Container(
       padding: padding ?? defaultPadding,
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.08),
+        color: Colors.black.withValues(alpha: 0.44),
         borderRadius: BorderRadius.circular(radius),
         border: Border.all(color: UiColors.gold, width: border),
       ),
@@ -330,9 +331,9 @@ class RainbowParagraph extends StatelessWidget {
   const RainbowParagraph(
     this.text, {
     super.key,
-    this.fontSize = 14.5,
+    this.fontSize = 15.8,
     this.height = 1.35,
-    this.weight = FontWeight.w600,
+    this.weight = FontWeight.w700,
   });
 
   @override
@@ -343,7 +344,7 @@ class RainbowParagraph extends StatelessWidget {
       weight: weight,
       firstCapsOnly: false,
       allCaps: false,
-      letterSpacing: 0.1,
+      letterSpacing: 0.14,
     );
   }
 }
@@ -351,10 +352,7 @@ class RainbowParagraph extends StatelessWidget {
 class LuxurySeam extends StatelessWidget {
   final bool vertical;
 
-  const LuxurySeam({
-    super.key,
-    this.vertical = false,
-  });
+  const LuxurySeam({super.key, this.vertical = false});
 
   @override
   Widget build(BuildContext context) {
@@ -390,13 +388,21 @@ class LuxurySeam extends StatelessWidget {
         gradient: gradient,
         border: Border(
           top: BorderSide(
-              color: const Color(0x55D4AF37), width: vertical ? 0 : border),
+            color: const Color(0x55D4AF37),
+            width: vertical ? 0 : border,
+          ),
           bottom: BorderSide(
-              color: const Color(0x33000000), width: vertical ? 0 : border),
+            color: const Color(0x33000000),
+            width: vertical ? 0 : border,
+          ),
           left: BorderSide(
-              color: const Color(0x55D4AF37), width: vertical ? border : 0),
+            color: const Color(0x55D4AF37),
+            width: vertical ? border : 0,
+          ),
           right: BorderSide(
-              color: const Color(0x33000000), width: vertical ? border : 0),
+            color: const Color(0x33000000),
+            width: vertical ? border : 0,
+          ),
         ),
       ),
     );

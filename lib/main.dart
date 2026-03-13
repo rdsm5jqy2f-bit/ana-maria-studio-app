@@ -21,9 +21,7 @@ Future<void> main() async {
   if (!kIsWeb &&
       (defaultTargetPlatform == TargetPlatform.android ||
           defaultTargetPlatform == TargetPlatform.iOS)) {
-    await SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
   runApp(const AnaMariaApp());
@@ -42,9 +40,9 @@ class AnaMariaApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
         useMaterial3: true,
         textTheme: ThemeData.dark().textTheme.apply(
-              bodyColor: const Color(0xFFC9A227),
-              displayColor: const Color(0xFFC9A227),
-            ),
+          bodyColor: const Color(0xFFFFF6E6),
+          displayColor: const Color(0xFFFFF9EF),
+        ),
       ),
       home: HomePage(),
     );
