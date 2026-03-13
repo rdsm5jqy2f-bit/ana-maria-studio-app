@@ -66,7 +66,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBZkJU2GwoG4X8XxSFTVU6NHb9BHEv3tN0',
-    appId: '1:403287487378:ios:dc8a7cc326584fcf8c874b',
+    appId: '1:403287487378:ios:923d1dbb8c0056478c874b',
     messagingSenderId: '403287487378',
     projectId: 'ana-maria-studio',
     storageBucket: 'ana-maria-studio.firebasestorage.app',

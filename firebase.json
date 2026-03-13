@@ -1,67 +1,69 @@
 {
-  "hosting": {
-    "predeploy": [
-      "flutter build web",
-      "dart run scripts/prepare_web_seo.dart"
-    ],
-    "public": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "headers": [
-      {
-        "source": "/sitemap.xml",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "application/xml; charset=utf-8"
-          },
-          {
-            "key": "Cache-Control",
-            "value": "public, max-age=3600"
-          }
-        ]
-      },
-      {
-        "source": "/robots.txt",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "text/plain; charset=utf-8"
-          },
-          {
-            "key": "Cache-Control",
-            "value": "public, max-age=3600"
-          }
-        ]
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  },
-  "flutter": {
-    "platforms": {
-      "android": {
-        "default": {
-          "projectId": "ana-maria-studio",
-          "appId": "1:403287487378:android:f608a9d85eaf49ef8c874b",
-          "fileOutput": "android/app/google-services.json"
-        }
-      },
-      "dart": {
-        "lib/firebase_options.dart": {
-          "projectId": "ana-maria-studio",
-          "configurations": {
-            "ios": "1:403287487378:ios:dc8a7cc326584fcf8c874b"
-          }
-        }
-      }
-    }
-  }
+	"hosting": {
+		"predeploy": [
+			"flutter build web",
+			"dart run scripts/prepare_web_seo.dart"
+		],
+		"public": "build/web",
+		"ignore": [
+			"firebase.json",
+			"**/.*",
+			"**/node_modules/**"
+		],
+		"headers": [
+			{
+				"source": "/sitemap.xml",
+				"headers": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml; charset=utf-8"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "public, max-age=3600"
+					}
+				]
+			},
+			{
+				"source": "/robots.txt",
+				"headers": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain; charset=utf-8"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "public, max-age=3600"
+					}
+				]
+			}
+		],
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/index.html"
+			}
+		]
+	},
+	"flutter": {
+		"platforms": {
+			"android": {
+				"default": {
+					"projectId": "ana-maria-studio",
+					"appId": "1:403287487378:android:ee71d810dcd8e9e28c874b",
+					"fileOutput": "android/app/google-services.json"
+				}
+			},
+			"dart": {
+				"lib/firebase_options.dart": {
+					"projectId": "ana-maria-studio",
+					"configurations": {
+						"android": "1:403287487378:android:ee71d810dcd8e9e28c874b",
+						"ios": "1:403287487378:ios:923d1dbb8c0056478c874b",
+						"web": "1:403287487378:web:42c64f23915ef1a68c874b"
+					}
+				}
+			}
+		}
+	}
 }
