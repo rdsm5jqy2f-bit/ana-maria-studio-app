@@ -38,20 +38,21 @@ class _SectionPageState extends State<SectionPage> {
     final size = MediaQuery.of(context).size;
     final frameWidth = math.max(360.0, size.width);
     final redH = frameWidth / LayerTuning.redAspectRatio;
+    final pinkTargetH = viewportHeight * (UiSizes.pinkFlex / 100.0);
     final pinkMinH = math.max(
-      viewportHeight - redH,
+      pinkTargetH,
       frameWidth / LayerTuning.pinkAspectRatio,
     );
     final requestedAsset = widget.backgroundAsset;
     final fallbackAsset = AppAssets.pinkByTitle(widget.title);
     final resolvedBackgroundAsset =
-      (requestedAsset != null && requestedAsset.trim().isNotEmpty)
+        (requestedAsset != null && requestedAsset.trim().isNotEmpty)
         ? requestedAsset
         : fallbackAsset;
     final resolvedPageId =
         (widget.pageId != null && widget.pageId!.trim().isNotEmpty)
-            ? AppAssets.slugFromTitle(widget.pageId!)
-            : AppAssets.slugFromTitle(widget.title);
+        ? AppAssets.slugFromTitle(widget.pageId!)
+        : AppAssets.slugFromTitle(widget.title);
 
     Widget content = Column(
       key: ValueKey<String>('pink-page-$resolvedPageId'),
@@ -61,13 +62,7 @@ class _SectionPageState extends State<SectionPage> {
         ConstrainedBox(
           constraints: BoxConstraints(minHeight: pinkMinH),
           child: Container(
-            decoration: const BoxDecoration(
-              gradient: const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Colors.black, Colors.black87],
-              ),
-            ),
+            color: Colors.black,
             child: Stack(
               children: [
                 Positioned.fill(
@@ -77,7 +72,7 @@ class _SectionPageState extends State<SectionPage> {
                       scale: LayerTuning.pinkScale,
                       child: Image.asset(
                         resolvedBackgroundAsset,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                         alignment: LayerTuning.pinkAlignment,
                         filterQuality: FilterQuality.high,
                         gaplessPlayback: true,
@@ -113,7 +108,9 @@ class _SectionPageState extends State<SectionPage> {
                                   label: 'Back',
                                   alignLeft: false,
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 6),
+                                    horizontal: 10,
+                                    vertical: 6,
+                                  ),
                                   onTap: () => Navigator.of(context).maybePop(),
                                 ),
                               ),
