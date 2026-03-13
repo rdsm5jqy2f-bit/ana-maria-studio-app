@@ -66,20 +66,14 @@ class _SectionPageState extends State<SectionPage> {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: Transform.translate(
-                    offset: LayerTuning.pinkOffset,
-                    child: Transform.scale(
-                      scale: LayerTuning.pinkScale,
-                      child: Image.asset(
-                        resolvedBackgroundAsset,
-                        fit: BoxFit.contain,
-                        alignment: LayerTuning.pinkAlignment,
-                        filterQuality: FilterQuality.high,
-                        gaplessPlayback: true,
-                        errorBuilder: (_, __, ___) =>
-                            Container(color: Colors.black),
-                      ),
-                    ),
+                  child: Image.asset(
+                    resolvedBackgroundAsset,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                    filterQuality: FilterQuality.high,
+                    gaplessPlayback: true,
+                    errorBuilder: (_, __, ___) =>
+                        Container(color: Colors.black),
                   ),
                 ),
                 Padding(

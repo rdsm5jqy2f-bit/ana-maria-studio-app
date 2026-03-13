@@ -18,7 +18,7 @@ class UiSizes {
   static const double btnRadius = 22;
   static const double btnBorder = 1.6;
   static const double btnIcon = 18;
-  static const double btnFont = 15.8;
+  static const double btnFont = 16.2;
   static const double btnGap = 8;
   static const double btnRowPadH = 10;
   static const double btnRowPadV = 8;
@@ -63,13 +63,13 @@ String titleCaseFirstOnly(String s) {
 }
 
 const Color kLuxuryIvoryText = UiColors.ivoryStrong;
-const Color kLuxuryOutlineGold = Color(0xFFD4AF37);
 
 const List<String> kCalligraphicFallback = <String>[
+  'Times New Roman',
   'Snell Roundhand',
   'Segoe Script',
   'Lucida Handwriting',
-  'Times New Roman',
+  'Georgia',
 ];
 
 const List<String> kReadableBodyFallback = <String>[
@@ -105,73 +105,42 @@ class RainbowText extends StatelessWidget {
     String display = text;
     if (allCaps) display = text.toUpperCase();
     if (firstCapsOnly && !allCaps) display = titleCaseFirstOnly(text);
-    final useCalligraphic =
+    final isTitle =
         headingStyle ||
         (weight.value >= FontWeight.w800.value && fontSize >= 16.0);
-    final resolvedFontFamily = useCalligraphic ? 'Times New Roman' : 'Roboto';
-    final resolvedFontFallback = useCalligraphic
+    final resolvedFontFamily = isTitle ? 'Times New Roman' : 'Roboto';
+    final resolvedFontFallback = isTitle
         ? kCalligraphicFallback
         : kReadableBodyFallback;
-    final resolvedFontStyle = useCalligraphic
-        ? FontStyle.italic
-        : FontStyle.normal;
+    final resolvedFontStyle = isTitle ? FontStyle.italic : FontStyle.normal;
 
     final resolvedLetterSpacing =
-        (useCalligraphic ? letterSpacing + 0.20 : letterSpacing) * uiScale;
-    final resolvedFontSize = fontSize * uiScale;
+        (isTitle ? letterSpacing + 0.26 : letterSpacing + 0.08) * uiScale;
+    final resolvedFontSize = fontSize * uiScale * (isTitle ? 1.14 : 1.06);
 
-    final textWidget = Stack(
-      children: [
-        Text(
-          display,
-          style: TextStyle(
-            fontSize: resolvedFontSize,
-            fontWeight: weight,
-            fontFamily: resolvedFontFamily,
-            fontFamilyFallback: resolvedFontFallback,
-            fontStyle: resolvedFontStyle,
-            decoration: TextDecoration.none,
-            decorationColor: Colors.transparent,
-            letterSpacing: resolvedLetterSpacing,
-            height: useCalligraphic ? 1.06 : 1.14,
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = useCalligraphic ? 2.3 * uiScale : 1.8 * uiScale
-              ..color = kLuxuryOutlineGold,
-          ),
-        ),
-        Text(
-          display,
-          style: TextStyle(
-            fontSize: resolvedFontSize,
-            fontWeight: weight,
-            fontFamily: resolvedFontFamily,
-            fontFamilyFallback: resolvedFontFallback,
-            fontStyle: resolvedFontStyle,
-            color: kLuxuryIvoryText,
-            decoration: TextDecoration.none,
-            decorationColor: Colors.transparent,
-            letterSpacing: resolvedLetterSpacing,
-            height: useCalligraphic ? 1.06 : 1.14,
-            shadows: [
-              Shadow(
-                color: Colors.black.withValues(alpha: 0.36),
-                blurRadius: 2.4,
-                offset: const Offset(0, 1),
-              ),
-            ],
-          ),
-        ),
-      ],
+    final textWidget = Text(
+      display,
+      style: TextStyle(
+        fontSize: resolvedFontSize,
+        fontWeight: weight,
+        fontFamily: resolvedFontFamily,
+        fontFamilyFallback: resolvedFontFallback,
+        fontStyle: resolvedFontStyle,
+        color: isTitle ? UiColors.ivoryStrong : UiColors.ivory,
+        decoration: TextDecoration.none,
+        decorationColor: Colors.transparent,
+        letterSpacing: resolvedLetterSpacing,
+        height: isTitle ? 1.08 : 1.18,
+      ),
     );
 
-    if (!useCalligraphic) {
+    if (!isTitle) {
       return textWidget;
     }
 
     return Transform(
       alignment: Alignment.centerLeft,
-      transform: Matrix4.identity()..setEntry(0, 1, -0.03),
+      transform: Matrix4.identity()..setEntry(0, 1, -0.02),
       child: textWidget,
     );
   }
@@ -331,9 +300,9 @@ class RainbowParagraph extends StatelessWidget {
   const RainbowParagraph(
     this.text, {
     super.key,
-    this.fontSize = 15.8,
+    this.fontSize = 16.4,
     this.height = 1.35,
-    this.weight = FontWeight.w700,
+    this.weight = FontWeight.w600,
   });
 
   @override

@@ -39,8 +39,8 @@ class PinkLayer extends StatelessWidget {
             children: [
               Image.asset(
                 fallbackAsset,
-                fit: BoxFit.contain,
-                alignment: Alignment.center,
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
                 filterQuality: FilterQuality.high,
                 gaplessPlayback: true,
                 errorBuilder: (_, __, ___) => Container(color: Colors.black),
@@ -48,8 +48,8 @@ class PinkLayer extends StatelessWidget {
               if (hasCustomAsset)
                 Image.asset(
                   requestedAsset,
-                  fit: BoxFit.contain,
-                  alignment: Alignment.center,
+                  fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
                   filterQuality: FilterQuality.high,
                   gaplessPlayback: true,
                   errorBuilder: (_, __, ___) => const SizedBox.shrink(),

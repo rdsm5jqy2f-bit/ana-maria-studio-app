@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppConfig {
   static const String appName = 'Ana Maria Studio & Academy';
-  static bool get enableRemoteGallery => true;
+  static bool get enableRemoteGallery => false;
   static const String remoteGalleryRoot = 'gallery';
 }
 
@@ -67,8 +67,8 @@ class AppAssets {
       pinkNamed('hair_up_event_styling.jpg');
   static final String bgSignatureTransformation =
       pinkNamed('signature_transformation.jpg');
-    static final String bgHairTherapy = pinkNamed('hair_therapy.jpg');
-    static final String bgHairExtensions = pinkNamed('hair_extensions.jpg');
+  static final String bgHairTherapy = pinkNamed('hair_therapy.jpg');
+  static final String bgHairExtensions = pinkNamed('hair_extensions.jpg');
 
   static final String bgFastConsult = pinkNamed('fast_consult.jpg');
   static final String bgReiki = pinkNamed('reiki.jpg');
@@ -156,7 +156,7 @@ class AppLinks {
   static const String instagram =
       'https://www.instagram.com/anamaria.hair_studio?igsh=MW5yYXB2MjY3ZmVmaQ%3D%3D&utm_source=qr';
   static const String tiktok =
-      'https://www.tiktok.com/@anamariahairstudio?_r=1&_t=ZN-93kYvxCX5IE';
+      'https://www.tiktok.com/@anamariahairstudio.co.uk?_r=1&_t=ZN-94f7n67x4Ug';
 
   static const String website = '';
 }

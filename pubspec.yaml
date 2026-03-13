@@ -38,4 +38,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/branding/
+    - assets/images/gallery/colors/
+    - assets/images/gallery/hairstyles/
+    - assets/images/gallery/inspiration/
     - assets/images/background/pink_named/

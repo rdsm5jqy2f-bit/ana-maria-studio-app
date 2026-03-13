@@ -19,12 +19,12 @@ class SectionCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(18),
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+            filter: ImageFilter.blur(sigmaX: 3.2, sigmaY: 3.2),
             child: Container(
               padding: const EdgeInsets.all(18),
               margin: const EdgeInsets.only(bottom: 14),
               decoration: BoxDecoration(
-                color: Colors.black.withValues(alpha: 0.62),
+                color: Colors.black.withValues(alpha: 0.72),
                 borderRadius: BorderRadius.circular(18),
                 border: showBorder
                     ? Border.all(
