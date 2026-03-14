@@ -25,18 +25,28 @@
 
 ## 3) iOS (App Store Connect, macOS Required)
 
+- On Windows (before moving to Mac):
+  - `flutter pub get`
+  - `dart run scripts/ios_preflight_check.dart`
+  - `powershell -ExecutionPolicy Bypass -File scripts/firebase_apps_audit.ps1`
 - Ensure bundle id is `com.anamaria.studio` in Xcode project settings.
 - In Firebase Console, register iOS app with the same bundle id.
 - Download and place:
   - `ios/Runner/GoogleService-Info.plist`
+- Ensure iOS Firebase App ID is `1:403287487378:ios:923d1dbb8c0056478c874b` in:
+  - `ios/Runner/GoogleService-Info.plist`
+  - `lib/firebase_options.dart`
+  - `firebase.json`
 - On macOS:
   - `flutter clean`
   - `flutter pub get`
-  - `cd ios && pod install && cd ..`
+  - `dart run scripts/ios_preflight_check.dart`
+  - `bash scripts/fix_cocoapods_macos.sh`
   - Open `ios/Runner.xcworkspace`
 - In Xcode:
   - Set `Team` and `Signing` for Runner target.
   - Increment build number if needed.
+  - If build fails, run `bash scripts/fix_cocoapods_macos.sh --deep-clean`, then use Product -> Clean Build Folder and clear DerivedData.
   - Product -> Archive -> Distribute App -> App Store Connect.
 
 ## 4) Post-Release Verification
